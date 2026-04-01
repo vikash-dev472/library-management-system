@@ -1,12 +1,13 @@
 <?php
-    require('functions.php');
+   require('functions.php');
    session_start();
 	#fetch data from database
 	$connection = mysqli_connect("localhost","root","vikash123");
 	$db = mysqli_select_db($connection,"project2");
-	$author_name = "";
-	
-	$query =  "select issuee_books.book_name,issuee_books.book_author,issuee_books.book_no,sys8.name from issuee_books left join sys8 on issuee_books.student_id = sys8.id";
+	$cat_name = "";
+       $query = "select * from category";
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="../bootstrap-4.4.1/css/bootstrap.min.css">
   	<script type="text/javascript" src="../bootstrap-4.4.1/js/juqery_latest.js"></script>
   	<script type="text/javascript" src="../bootstrap-4.4.1/js/bootstrap.min.js"></script>
-
+</head>
 <style type="text/css">
 	
 	#side_bar{
@@ -25,6 +26,7 @@
 		width: 300px;
 		height: 450px;
 	}
+	
 </style>
 </head>
 
@@ -93,7 +95,7 @@
        </div>
      </nav>
 	<span><marquee>This is library mangement system. Library opens at 8:00 AM and close at 8:00 PM</marquee></span><br><br>
-	   <center><h4>Books Issued </h4><br></center>
+	   <center><h4>Registered Category</h4><br></center>
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
@@ -101,26 +103,18 @@
 					<table class="table-bordered" width="900px" style="text-align: center">
 						<tr>
 							<th>Name:</th>
-							<th>Author:</th>
-							<th>Number:</th>
-							<th>Student Name:</th>
+							
 						</tr>
 				
 					<?php
 						$query_run = mysqli_query($connection,$query);
 						while ($row = mysqli_fetch_assoc($query_run)){
-							$book_name = $row['book_name'];
-							$book_author = $row['book_author'];
-							$book_no = $row['book_no'];
-							$student_name = $row['name'];
-					   ?>
+							$cat_name = $row['cat_name'];
+												   ?>
 						<tr>
+							<td><?php echo $cat_name;?></td>
 							
-							<td><?php echo $book_name;?></td>
-							<td><?php echo $book_author;?></td>
-							<td><?php echo $book_no;?></td>
-                      <td><?php echo $student_name;?></td>
-                   </tr>
+						</tr>
 					<?php
 						}
 					?>	

@@ -1,12 +1,22 @@
 <?php
-    require('functions.php');
-   session_start();
-	#fetch data from database
+ require('functions.php');
+session_start();
+
+	
+	
 	$connection = mysqli_connect("localhost","root","vikash123");
 	$db = mysqli_select_db($connection,"project2");
-	$author_name = "";
+	$name = "";
+	$email = "";
+	$password = "";
+	$mobile = "";
+	$address = "";
+	$query = "select * from sys8";
+	$query_run = mysqli_query($connection,$query);
+	while ($row = mysqli_fetch_assoc($query_run)) {
 	
-	$query =  "select issuee_books.book_name,issuee_books.book_author,issuee_books.book_no,sys8.name from issuee_books left join sys8 on issuee_books.student_id = sys8.id";
+	}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -93,34 +103,33 @@
        </div>
      </nav>
 	<span><marquee>This is library mangement system. Library opens at 8:00 AM and close at 8:00 PM</marquee></span><br><br>
-	   <center><h4>Books Issued </h4><br></center>
+	   <center><h4>Registered Users Detail</h4><br></center>
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<form>
 					<table class="table-bordered" width="900px" style="text-align: center">
 						<tr>
-							<th>Name:</th>
-							<th>Author:</th>
-							<th>Number:</th>
-							<th>Student Name:</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Mobile</th>
+							<th>Address</th>
 						</tr>
 				
 					<?php
 						$query_run = mysqli_query($connection,$query);
 						while ($row = mysqli_fetch_assoc($query_run)){
-							$book_name = $row['book_name'];
-							$book_author = $row['book_author'];
-							$book_no = $row['book_no'];
-							$student_name = $row['name'];
+							$name = $row['name'];
+							$email = $row['email'];
+							$mobile = $row['mobile'];
+							$address = $row['address'];
 					   ?>
 						<tr>
-							
-							<td><?php echo $book_name;?></td>
-							<td><?php echo $book_author;?></td>
-							<td><?php echo $book_no;?></td>
-                      <td><?php echo $student_name;?></td>
-                   </tr>
+							<td><?php echo $name;?></td>
+								<td><?php echo $email;?></td>
+							<td><?php echo $mobile;?></td>
+							<td><?php echo $address;?></td>
+						</tr>
 					<?php
 						}
 					?>	

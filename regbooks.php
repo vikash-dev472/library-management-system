@@ -1,12 +1,16 @@
 <?php
-    require('functions.php');
+   require('functions.php');
    session_start();
 	#fetch data from database
 	$connection = mysqli_connect("localhost","root","vikash123");
 	$db = mysqli_select_db($connection,"project2");
-	$author_name = "";
-	
-	$query =  "select issuee_books.book_name,issuee_books.book_author,issuee_books.book_no,sys8.name from issuee_books left join sys8 on issuee_books.student_id = sys8.id";
+	$book_name = "";
+	$author = "";
+	$category = "";
+	$book_no = "";
+	$price = "";
+	$query = "select books.book_name,books.book_no,books.book_price,authors.author_name from books left join authors on books.author_id = authors.author_id";
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -93,7 +97,7 @@
        </div>
      </nav>
 	<span><marquee>This is library mangement system. Library opens at 8:00 AM and close at 8:00 PM</marquee></span><br><br>
-	   <center><h4>Books Issued </h4><br></center>
+	   <center><h4>Registered Books</h4><br></center>
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
@@ -102,25 +106,24 @@
 						<tr>
 							<th>Name:</th>
 							<th>Author:</th>
+							<th>Price:</th>
 							<th>Number:</th>
-							<th>Student Name:</th>
 						</tr>
 				
 					<?php
 						$query_run = mysqli_query($connection,$query);
 						while ($row = mysqli_fetch_assoc($query_run)){
 							$book_name = $row['book_name'];
-							$book_author = $row['book_author'];
+							$author_name = $row['author_name'];
+							$book_price = $row['book_price'];
 							$book_no = $row['book_no'];
-							$student_name = $row['name'];
 					   ?>
 						<tr>
-							
 							<td><?php echo $book_name;?></td>
-							<td><?php echo $book_author;?></td>
+							<td><?php echo $author_name;?></td>
+							<td><?php echo $book_price;?></td>
 							<td><?php echo $book_no;?></td>
-                      <td><?php echo $student_name;?></td>
-                   </tr>
+						</tr>
 					<?php
 						}
 					?>	

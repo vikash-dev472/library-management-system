@@ -1,17 +1,11 @@
 <?php
-    require('functions.php');
-   session_start();
-	#fetch data from database
-	$connection = mysqli_connect("localhost","root","vikash123");
-	$db = mysqli_select_db($connection,"project2");
-	$author_name = "";
-	
-	$query =  "select issuee_books.book_name,issuee_books.book_author,issuee_books.book_no,sys8.name from issuee_books left join sys8 on issuee_books.student_id = sys8.id";
+ require('functions.php');
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin Dashboard</title>
+	<title>User Dashboard</title>
 	<meta charset="utf-8" name="viewport" content="width=device-width,intial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../bootstrap-4.4.1/css/bootstrap.min.css">
   	<script type="text/javascript" src="../bootstrap-4.4.1/js/juqery_latest.js"></script>
@@ -24,6 +18,9 @@
 		padding: 50px;
 		width: 300px;
 		height: 450px;
+	}
+	body{
+	   background-color: lightskyblue;
 	}
 </style>
 </head>
@@ -66,23 +63,23 @@
 		      <li class="nav-item dropdown">
 	        	<a class="nav-link dropdown-toggle" data-toggle="dropdown">Books </a>
 	        	<div class="dropdown-menu">
-	        		<a class="dropdown-item" href="">Add New Book</a>
-	        		<a class="dropdown-item" href="">Manage Books</a>
+	        		<a class="dropdown-item" href="add_book.php">Add New Book</a>
+	        		<a class="dropdown-item" href="manage_book.php">Manage Books</a>
 	        	</div>
 		      </li>
 
 		      <li class="nav-item dropdown">
 	        	<a class="nav-link dropdown-toggle" data-toggle="dropdown">Category </a>
 	        	<div class="dropdown-menu">
-	        		<a class="dropdown-item" href="">Add New Category</a>
-	        		<a class="dropdown-item" href="">Manage Category</a>
+	        		<a class="dropdown-item" href="add_cat.php">Add New Category</a>
+	        		<a class="dropdown-item" href="manage_cat.php">Manage Category</a>
 	        	</div>
 		      </li>
 		      <li class="nav-item dropdown">
 	        	<a class="nav-link dropdown-toggle" data-toggle="dropdown">Authors</a>
 	        	<div class="dropdown-menu">
-	        		<a class="dropdown-item" href="">Add New Author</a>
-	        		<a class="dropdown-item" href="">Manage Author</a>
+	        		<a class="dropdown-item" href="add_author.php">Add New Author</a>
+	        		<a class="dropdown-item" href="manage_author.php">Manage Author</a>
 	        	</div>
 		      </li>
 	          <li class="nav-item">
@@ -93,45 +90,49 @@
        </div>
      </nav>
 	<span><marquee>This is library mangement system. Library opens at 8:00 AM and close at 8:00 PM</marquee></span><br><br>
-	   <center><h4>Books Issued </h4><br></center>
+	      
+	      <center><h4>Manage Book</h4><br></center>
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<form>
-					<table class="table-bordered" width="900px" style="text-align: center">
+				<table class="table table-bordered table-hover">
+					<thead>
 						<tr>
-							<th>Name:</th>
-							<th>Author:</th>
-							<th>Number:</th>
-							<th>Student Name:</th>
+						
+							
+							
+							<th>Name</th>
+							<th>Action</th>
 						</tr>
-				
+					</thead>
 					<?php
+						$connection = mysqli_connect("localhost","root","vikash123");
+						$db = mysqli_select_db($connection,"project2");
+						$query = "select * from category";
 						$query_run = mysqli_query($connection,$query);
 						while ($row = mysqli_fetch_assoc($query_run)){
-							$book_name = $row['book_name'];
-							$book_author = $row['book_author'];
-							$book_no = $row['book_no'];
-							$student_name = $row['name'];
-					   ?>
-						<tr>
-							
-							<td><?php echo $book_name;?></td>
-							<td><?php echo $book_author;?></td>
-							<td><?php echo $book_no;?></td>
-                      <td><?php echo $student_name;?></td>
-                   </tr>
-					<?php
+							?>
+							<tr>
+								
+								
+								<td><?php echo $row['cat_name'];?></td>
+								
+								<td><button class="btn" name=""><a href="edit_cat.php?cid=<?php echo $row['cat_id'];?>">Edit</a></button>
+								<button class="btn" name=""><a href="delete_cat.php?cid=<?php echo $row['cat_id'];?>">Delete</a></button>
+							  </td>
+							</tr>
+							<?php
 						}
-					?>	
+					?>
 				</table>
-				</form>
 			</div>
 			<div class="col-md-2"></div>
+
+		
 		</div>
-
-
-	  
-
 </body>
 </html>
+
+
+
+

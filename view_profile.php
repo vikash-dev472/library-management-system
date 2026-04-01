@@ -7,14 +7,15 @@ session_start();
 	$name = "";
 	$email = "";
 	$mobile = "";
-	$address = "";
-	$query = "select * from sys8 where email = '$_SESSION[email]'";
+
+	
+	$query = "select * from admins where email = '$_SESSION[email]'";
 	$query_run = mysqli_query($connection,$query);
 	while ($row = mysqli_fetch_assoc($query_run)){
 		$name = $row['name'];
 		$email = $row['email'];
 		$mobile = $row['mobile'];
-		$address = $row['address'];
+
 	}
 
 
@@ -23,12 +24,11 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-	<title>User Dashboard</title>
+	<title>Admin Dashboard</title>
 	<meta charset="utf-8" name="viewport" content="width=device-width,intial-scale=1">
-	<link rel="stylesheet" type="text/css" href="bootstrap-4.4.1/css/bootstrap.min.css">
-  	<script type="text/javascript" src="bootstrap-4.4.1/js/juqery_latest.js"></script>
-  	<script type="text/javascript" src="bootstrap-4.4.1/js/bootstrap.min.js"></script>
-
+	<link rel="stylesheet" type="text/css" href="../bootstrap-4.4.1/css/bootstrap.min.css">
+  	<script type="text/javascript" src="../bootstrap-4.4.1/js/juqery_latest.js"></script>
+  	<script type="text/javascript" src="../bootstrap-4.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
 	
 	#side_bar{
@@ -37,38 +37,15 @@ session_start();
 		width: 300px;
 		height: 450px;
 	}
+	body{
+		background-color: gray;
 	
-     .navbar{
-     	display: flex;
-     	flex-wrap: wrap;
-     	justify-content: space-between;
-        padding: 10px;
-     }
-     .navbar .navbar-brand{
-     	font-size: 18px;
-     }
+	}
+	
 
-     .row{
-     	display: flex;
-     	flex-wrap: wrap;
-     }
-     .col-md-4{
-     	flex: 1 1 300px;
-     	padding: 10px;
-     }
-
-   marquee {
-      font-size: 14px;
-   }
-   @media (max-width: 768px) {
-   	marquee {
-   		font-size: 12px	;
-   	}
-   }
-
+	
 </style>
 </head>
-
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
@@ -96,7 +73,7 @@ session_start();
 		    </ul>
 		</div>
 	</nav><br>
-	<span>This is library mangement system. Library opens at 8:00 AM and close at 8:00 PM</span><br><br>
+	<span><marquee>This is library mangement system. Library opens at 8:00 AM and close at 8:00 PM</marquee></span><br><br>
 	   
 	   <center><h4>Student Profile Detail</h4><br></center>
 		<div class="row">
@@ -104,23 +81,24 @@ session_start();
 			<div class="col-md-4">
 				<form>
 					<div class="form-group">
-						<label for="name">Name:</label>
+						<label>Name:</label>
 						<input type="text" class="form-control" value="<?php echo $name;?>" disabled>
 					</div>
 					<div class="form-group">
-						<label for="email">Email:</label>
+						<label>Email:</label>
 						<input type="text"  class="form-control" value="<?php echo $email;?>" disabled>
 					</div>
 					<div class="form-group">
-						<label for="mobile">Mobile:</label>
+						<label>Mobile:</label>
 						<input type="text" class="form-control" value="<?php echo $mobile;?>" disabled>
 					</div>
-					<div class="form-group">
-						<label for="address">Address:</label>
-						<textarea rows="3" cols="40" disabled="" class="form-control"><?php echo $address;?></textarea>
-					</div>
+
+					
 				</form>
 			</div>
          </div>
+
+
+
 </body>
 </html>
