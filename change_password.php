@@ -4,11 +4,11 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin Dashboard</title>
+	<title>User Dashboard</title>
 	<meta charset="utf-8" name="viewport" content="width=device-width,intial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../bootstrap-4.4.1/css/bootstrap.min.css">
-  	<script type="text/javascript" src="../bootstrap-4.4.1/js/juqery_latest.js"></script>
-  	<script type="text/javascript" src="../bootstrap-4.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="bootstrap-4.4.1/css/bootstrap.min.css">
+  	<script type="text/javascript" src="bootstrap-4.4.1/js/juqery_latest.js"></script>
+  	<script type="text/javascript" src="bootstrap-4.4.1/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 	
@@ -18,6 +18,51 @@ session_start();
 		width: 300px;
 		height: 450px;
 	}
+
+     .container-fluid {
+         max-width: 1800px;
+          margin: 50px ;
+         padding: 30px;
+         border-radius: 10px;
+         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+
+  .form-card {  
+  background: #fff;
+  padding: 30px;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  text-align: center;
+  margin-left: 480px;
+}
+
+
+.form-card h2 {
+  margin-bottom: 20px;
+}
+
+
+  
+.form-group {
+text-align: left;
+}
+
+.form-group label {
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+	
+
 </style>
 </head>
 
@@ -49,7 +94,7 @@ session_start();
 		</div>
 	</nav><br>
 	<span><marquee>This is library mangement system. Library opens at 8:00 AM and close at 8:00 PM</marquee></span><br><br>
-	   
+	     <div class="form-card">
 	   <center><h4>Change Student Password</h4><br></center>
 		<div class="row">
 			<div class="col-md-4"></div>
@@ -68,7 +113,7 @@ session_start();
 			</div>
 			<div class="col-md-4"></div>
 		</div>
-
+    </div>
 
 
 </body>
